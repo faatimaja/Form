@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link re="stylesheet" type="text/css" href="style.css"></link>
+    <title>Document</title>
+</head>
+<body>
+    
+<form name="myForm" onsubmit="return validateForm()" method="post">
+    <label>Username</label>
+    <input type="text" id="username" name="uname"> <br>
+
+    <label>Password</label>
+    <input type="password" name="psw"><br>
+
+    <label>Year of birth</label>
+    <input type="date" id="dob" name="dob"><br>
+
+    <input type="submit" value="Submit">
+</formname="myForm" onsubmit="return validateForm()" method="post">
+
+<script>
+
+function validateForm() {
+
+  var x = document.forms["myForm"]["uname"].value;
+  var ps = document.forms["myForm"]["psw"].value;
+  var dob = document.forms["myForm"]["dob"].value;
+
+  if(x == "") {
+    alert("Username must be entered!");
+    return false;
+  }
+  else if(x.length < 4){
+    alert("Username must have at least 4 characters!");
+    return false;
+  }
+  if(ps == ""){
+    alert("Password must contain at least 8 characters!");
+    return false;
+  }
+  else if(ps.length < 8){
+    alert("Password must have at least 8 characters!");
+    return false;
+  }
+
+  var age = getAge(dob);
+  if(age < 18){
+    alert("You must be adult!");
+    return false;
+  }
+}
+
+function getAge(year) {
+  ageMS = Date.parse(Date()) - Date.parse(year);
+  age = new Date();
+  age.setTime(ageMS);
+  ageYear = age.getFullYear() - 1970;
+  return ageYear;
+}
+
+
+
+</script>
+</body>
+</html>
